@@ -48,7 +48,7 @@ Descarga el código de este repositorio o ejecuta el siguiente comando en termin
 
 ## Referencia de comandos de la terminal
 
-Es requerido ejecutar los comandos `make init`, `make boilerplate` y `make webpack` (o `make webpack-ssl`) la configuración inicial por cada proyecto a configurar. 
+Es requerido ejecutar los comandos `make init`, `make template` y `make webpack` (o `make webpack-ssl`) la configuración inicial por cada proyecto a configurar. 
 
 A continuación se describe la función de cada comando:
 
@@ -101,10 +101,36 @@ Al finalizar la ejecución del comando `make webpack` o `make webpack-ssl`, el d
 ├── package.json
 ├── src
 │   ├── css
+│   │    ├── main.scss
+│   │    ├── base
+│   │    │   ├── base.scss
+│   │    │   ├── mixins.scss
+│   │    │   ├── variables.scss
+│   │    │   └── resets
+│   │    │         ├── normalize.scss
+│   │    │         ├── reset.local.scss
+│   │    │         └── typography.scss
+│   │    ├── components
+│   │    │   ├── header.scss
+│   │    │   ├── loading.scss
+│   │    │   └── footer.scss
+│   │    ├── layout
+│   │    │   └── containers.scss
+│   │    ├── pages
+│   │    │   └── ...
+│   │    ├── shared
+│   │    │   └── buttons.scss
+│   │    │   └── typography.scss
+│   │    └── utils
+│   │        └── ...
 │   ├── favicon
 │   ├── fonts
 │   ├── images
-│   └── js
+│   └── js
+│        └──main.js
+│        └──stickyNav.js
+│    
+│  
 ├── storage
 │   ├── .gitignore
 │   ├── config-deltas
@@ -143,9 +169,9 @@ Este boilerplate contempla algunos escenarios especificos durante el proceso de 
 * Desarrollo desde cero.
 * Continuación de desarrollo luego de un `git pull`.
 
-## Development from scratch for CraftCMS 3
+## Desarrollo desde cero en CraftCMS 3
 
-* Ejecute en el orden establecido los comandos mencionados en la sección [Referencia de comandos de la termianl](#referencia-de-comandos-de-la-terminal).
+* Ejecute en el orden establecido los comandos mencionados en la sección [Referencia de comandos de la terminal](#referencia-de-comandos-de-la-terminal).
 
 ## Development continuation from `git pull`
 
