@@ -4,8 +4,8 @@
 ### Este Makefile provee un entorno de desarrollo basado en Webpack, Babel, PostCSS, y SASS, sobre Laravel Mix optimizado para desarrollo en CraftCMS 3. 
 
 ### Incluye:
-* Make command para descargar y configurar una [instancia local de CraftCMS 3](#craftcms-3-setup).
-* Make command para descargar y configurar la [base de código de template para CraftCMS 3](#craftcms-3-boilerplate).
+* Make command para descargar y configurar una [instancia local de CraftCMS 3](https://craftcms.com/).
+* Make command para descargar y configurar la [base de código de template para CraftCMS 3](https://github.com/anuarhdz/craftcms-template).
 * Make command para configurar y ejecutar [Laravel Mix](https://laravel-mix.com), [Webpack](https://webpack.js.org/), Babel, SASS y otros.
 
 
@@ -48,7 +48,9 @@ Descarga el código de este repositorio o ejecuta el siguiente comando en termin
 
 ## Referencia de comandos de la terminal
 
-Es requerido ejecutar los comandos `make init`, `make boilerplate` y `make webpack` (o `make webpack-ssl`) en el first setup. A continuación se describe su función:
+Es requerido ejecutar los comandos `make init`, `make boilerplate` y `make webpack` (o `make webpack-ssl`) la configuración inicial por cada proyecto a configurar. 
+
+A continuación se describe la función de cada comando:
 
 1. `make init` hace el setup de CraftCMS 3 y plugins recomendados mediante [Composer](https://getcomposer.org). Debe tener lista una base de datos compatible. **Continue hasta la finalización de la instalación de CraftCMS mediante terminal.**
 
@@ -68,63 +70,66 @@ Es requerido ejecutar los comandos `make init`, `make boilerplate` y `make webpa
 
 **Organización del setup**
 
-Al finalizar la ejecución del comando `make webpack` o `make webpack-ssl`, el entorno de desarrollo estará organizado de la siguiente forma:
+Al finalizar la ejecución del comando `make webpack` o `make webpack-ssl`, el directorio del proyecto estará organizado de la siguiente forma:
 
-
-```bash
-├── config
-│   └──...
-├── modules
-│   └──...
-├── storage
-│   └──...
-├── templates
-│   └──_
-│   └──...
-├── vendor
-│   └──...
-├── web
-│   └──...
-├── src
-│   ├── css
-│   │    ├── main.scss
-│   │    ├── base
-│   │    │   ├──base.scss
-│   │    │   ├──mixins.scss
-│   │    │   ├──variables.scss
-│   │    │   └── resets
-│   │    │         ├──normalize.scss
-│   │    │         ├──reset.local.scss
-│   │    │         └──typography.scss
-│   │    ├── components
-│   │    │   └──...
-│   │    ├── layout
-│   │    │   └──...
-│   │    ├── pages
-│   │    │   └──...
-│   │    ├── shared
-│   │    │   └──buttons.scss
-│   │    │   └──typography.scss
-│   │    ├── utils
-│   │    │   └──...
-│   ├── fonts
-│   │    └──...
-│   ├── images
-│   │    └──...
-│   ├── js
-│   │    └──main.js
+```shell
 ├── .babelrc
 ├── .env
 ├── .env.example
 ├── .gitignore
+├── Makefile
+├── README.md
 ├── bootstrap.php
 ├── composer.json
 ├── composer.lock
+├── config
+│   ├── app.php
+│   ├── db.php
+│   ├── general.php
+│   ├── htmlpurifier
+│   ├── license.key
+│   ├── mix.php
+│   ├── project
+│   ├── redactor
+│   └── routes.php
 ├── craft
-├── Makefile
+├── modules
+│   └── Module.php
+├── node_modules
+│   └── ...
 ├── package-lock.json
 ├── package.json
-├── README.md
+├── src
+│   ├── css
+│   ├── favicon
+│   ├── fonts
+│   ├── images
+│   └── js
+├── storage
+│   ├── .gitignore
+│   ├── config-deltas
+│   ├── logs
+│   └── runtime
+├── templates
+│   ├── _components
+│   │    └── ...
+│   ├── _critical
+│   │    └── ...
+│   ├── _layouts
+│   │    └── ...
+│   ├── _meta
+│   │    └── ...
+│   ├── _snippets
+│   │    └── ...
+│   └── index.twig
+├── vendor
+│   └── ...
+├── web
+│   ├── .htaccess
+│   ├── assets
+│   ├── cpresources
+│   ├── index.php
+│   └── web.config
 └── webpack.mix.js
 ```
 La carpeta raíz del proyecto debe contener la instalación de CraftCMS con la distribución de nombres original. Además, contendrá el directorio `./src` donde se crearán los archivos de desarrollo, así como assets y fonts.
@@ -135,8 +140,8 @@ Deberá configurar su servidor local para que su virtual host apunte a `./web` c
 
 Este boilerplate contempla algunos escenarios especificos durante el proceso de desarrollo en CraftCMS 3. 
 
-* Development from scratch.
-* Development continuation from `git pull`.
+* Desarrollo desde cero.
+* Continuación de desarrollo luego de un `git pull`.
 
 ## Development from scratch for CraftCMS 3
 
@@ -151,9 +156,9 @@ Si configurará por primera vez un proyecto desde `git pull`:
 3. Configure el archivo `.env` en el directorio raíz del proyecto. [Puede usar este ejemplo como base](https://gist.github.com/anuarhdz/c802cf373fcc5f8de2f2e480190a4e02).
 4. Configure el archivo `general.php` dentro de `./config`. [Puede usar este ejemplo como base](https://gist.github.com/anuarhdz/ec96fc0a20a64aff81d73e7ed28de530).
 5. Ejecute `composer update` en la carpeta raíz del proyecto.
-6. Ejecute `php craft setup/welcome` en la carpeta raíz del proyecto para configurar CraftCMS en base al `.env`. 
+6. Ejecute `php craft setup/welcome` o `./craft setup/welcome` en la carpeta raíz del proyecto para configurar CraftCMS en base al `.env`. 
 7. Verifique que su archivo `.env` contenga la variable `PRIMARY_SITE_URL` con su virtual host como valor. Si no lo tiene, añadalo. Es importante para el correcto funcionamiento del entorno. 
-8. Ejecute `make webpack` o `make webpack-ssl` para instalar todas las dependencias de npm y webpack / laravel mix. Luego de este paso, podrá usar los comandos `make work`, `make prod` o `make prod` para desarrollar. 
+8. Ejecute `make webpack` o `make webpack-ssl` para instalar todas las dependencias de npm y webpack / laravel mix. Luego de este paso, podrá usar los comandos `make work`, `make staging` o `make prod` para desarrollar. 
 
 
 ## Critical CSS
