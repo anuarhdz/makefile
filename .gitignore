@@ -1,0 +1,8 @@
+/.vscode
+/.env
+/.idea
+/vendor
+/node_modules
+/config/general.php
+/web/assets/*
+.DS_Store
