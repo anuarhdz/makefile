@@ -94,3 +94,6 @@ prod:
 
 criticalclean:
 	@rm -rf templates/_critical/*min.css
+
+setupnpm:
+	npm install

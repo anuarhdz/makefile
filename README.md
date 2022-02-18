@@ -184,7 +184,7 @@ Si configurará por primera vez un proyecto desde `git pull`:
 5. Ejecute `composer update` en la carpeta raíz del proyecto.
 6. Ejecute `php craft setup/welcome` o `./craft setup/welcome` en la carpeta raíz del proyecto para configurar CraftCMS en base al `.env`. 
 7. Verifique que su archivo `.env` contenga la variable `PRIMARY_SITE_URL` con su virtual host como valor. Si no lo tiene, añadalo. Es importante para el correcto funcionamiento del entorno. 
-8. Ejecute `make webpack` o `make webpack-ssl` para instalar todas las dependencias de npm y webpack / laravel mix. Luego de este paso, podrá usar los comandos `make work`, `make staging` o `make prod` para desarrollar. 
+8. Ejecute `make setupnpm` para instalar todas las dependencias de npm y webpack / laravel mix. Luego de este paso, podrá usar los comandos `make work`, `make staging` o `make prod` para desarrollar. 
 
 
 ## Critical CSS
