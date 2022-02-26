@@ -1,3 +1,5 @@
+all: init template install-mix
+
 init: installcraft
 	@rm -rf .git
 	@rm -rf cms/.gitignore
@@ -97,3 +99,37 @@ criticalclean:
 
 setupnpm:
 	npm install
+
+install-mix: getMix getPackageFiles 
+	@echo "Setup Laravel Mix and Webpack..."
+	npm install
+	@echo "Laravel Mix and webpack ready!"
+
+getMix:
+	@echo "Setup webpack..."
+	@git clone git@gist.github.com:975daa4cc5ff4fcaec8420200308f954.git ./webpack
+	@mv -f webpack/webpack.mix.js .
+	@rm  -rf webpack
+	@echo "Webpack Done!"
+
+getPackageFiles:
+	@echo "Babel setup..."
+	@git clone git@gist.github.com:081e7045cab50624991c26c3e4e36542.git ./babel
+	@mv -n babel/.babelrc .
+	@rm  -rf babel
+	@echo "Babel done!"
+	@echo "Package setup..."
+	@git clone git@gist.github.com:44e7f92990bab8cc0dd4d02e6c5e2109.git ./npm
+	@mv -n npm/package.json .
+	@rm  -rf npm
+	@echo "Package done!"
+	@sleep .5
+
+mix: 
+	npx mix watch
+
+mix-staging:
+	npx mix
+
+mix-prod:
+	npx mix -p
