@@ -1,4 +1,4 @@
-all: init template install-mix
+all: init template webpack-mix
 
 init: installcraft
 	@rm -rf .git
@@ -26,6 +26,14 @@ init: installcraft
 	@git clone git@gist.github.com:11156bbd6bac5064d3d7109ebcb2763d.git ./config/mix
 	@mv -f ./config/mix/mix.php ./config
 	@rm  -rf ./config/mix
+	@sleep 1
+	@git clone git@github.com:anuarhdz/default-redactor-config.git ./config/redactor/redactor-default
+	@mv -f ./config/redactor/Default.json ./config/redactor/OldDefault.json
+	@rm -rf ./config/redactor/redactor-default/.git
+	@rm -rf ./config/redactor/redactor-default/.gitignore
+	@cp -r ./config/redactor/redactor-default/ ./config/redactor/
+	@rm -rf ./config/redactor/redactor-default
+	@echo "Redactor default config done"
 	@sleep .5
 	@echo "CraftCMS ready!"
 
@@ -100,7 +108,7 @@ criticalclean:
 setupnpm:
 	npm install
 
-install-mix: getMix getPackageFiles 
+webpack-mix: getMix getPackageFiles 
 	@echo "Setup Laravel Mix and Webpack..."
 	npm install
 	@echo "Laravel Mix and webpack ready!"
@@ -125,7 +133,7 @@ getPackageFiles:
 	@echo "Package done!"
 	@sleep .5
 
-mix: 
+mix-dev: 
 	npx mix watch
 
 mix-staging:

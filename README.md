@@ -48,29 +48,33 @@ Descarga el código de este repositorio o ejecuta el siguiente comando en termin
 
 ## Referencia de comandos de la terminal
 
-Es requerido ejecutar los comandos `make init`, `make template` y `make webpack` (o `make webpack-ssl`) la configuración inicial por cada proyecto a configurar. 
+Es requerido ejecutar los comandos `make init`, `make template` y `make webpack` (o `make webpack-ssl`) la configuración inicial por cada proyecto a configurar.
 
-A continuación se describe la función de cada comando:
+## Instalación con un solo comando
+
+Al ejecutar `make` o `make all` en el directorio donde previamente clonó o descargó este repositorio, se ejecutarán uno a uno cada uno de los comandos de configuración de este setup. En algunos pasos se requerirá que capture información (Craft CMS 3 setup), por lo que la captura de dicha info es importante para que los comandos de make se ejecuten adecuadamente. 
+
+Si desea configurar este entorno de desarrollo paso a paso, a continuación se describe la función de cada comando:
 
 1. `make init` hace el setup de CraftCMS 3 y plugins recomendados mediante [Composer](https://getcomposer.org). Debe tener lista una base de datos compatible. **Continue hasta la finalización de la instalación de CraftCMS mediante terminal.**
 
 2. `make template` configura el boilerplate adaptado al workflow de desarrollo sobre CraftCMS, es decir, la base de código de JS, SASS, imágenes, fonts y favicon, así como la estructura de un template de Twig.
 
-3. `make webpack` o `make webpack-ssl` instalan todas las dependencias de `npm` y dejará la base de código lista para funcionar. Ambos comandos hacen lo mismo. **La única diferencia** es que el setup del archivo `webpack.mix.js` que se genera con `make webpack-ssl` permite usar certificados SSL para el virtual host. **ES IMPORTANTE* tomar en cuenta que ya debe contar con el SSL configurado para su vhost. Este comando solo permite usar un archivo de webpack adaptado para usar esa configuración existente.
+3. `make webpack-mix` instala todas las dependencias de `npm` y dejará la base de código lista para funcionar.
 
 **Nota:** Verifique que su archivo `.env` contenga la variable `PRIMARY_SITE_URL` con su virtual host como valor. Si no lo tiene, añadalo. Es importante para el correcto funcionamiento del entorno. 
 
 **Los siguientes comandos serán utilizados durante el desarrollo:**
 
-4. `make work` creando una instancia de Browsersync de su virtual host. Borrará todos los archivos .min.css que se encuentren en `./templates/_critical/`.
+4. `make mix-dev` creando una instancia de Browsersync de su virtual host.
 
-5. `make staging` compilará assets para staging.
+5. `make mix-staging` compilará assets para staging.
 
-6. `make prod` compilará assets para production.
+6. `make mix-prod` compilará assets para production.
 
 **Organización del setup**
 
-Al finalizar la ejecución del comando `make webpack` o `make webpack-ssl`, el directorio del proyecto estará organizado de la siguiente forma:
+El setup completo del entorno debe verse de la siguiente forma:
 
 ```shell
 ├── .babelrc
@@ -212,7 +216,7 @@ Para crear una base CSS crítica correcta, indique cada una de las URL del sitio
     },
 })
 ```
-Todo el CSS crítico solicitado se calculará y compilará ejecutando el comando `make prod`.
+Todo el CSS crítico solicitado se calculará y compilará ejecutando el comando `make mix-prod`.
 
 
 
