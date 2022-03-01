@@ -23,11 +23,11 @@ init: installcraft
 	@sleep 1
 	@php craft plugin/install seo
 	@sleep 1
-	@git clone git@gist.github.com:11156bbd6bac5064d3d7109ebcb2763d.git ./config/mix
+	@git clone https://gist.github.com/11156bbd6bac5064d3d7109ebcb2763d.git ./config/mix
 	@mv -f ./config/mix/mix.php ./config
 	@rm  -rf ./config/mix
 	@sleep 1
-	@git clone git@github.com:anuarhdz/default-redactor-config.git ./config/redactor/redactor-default
+	@git clone https://github.com/anuarhdz/default-redactor-config.git ./config/redactor/redactor-default
 	@mv -f ./config/redactor/Default.json ./config/redactor/OldDefault.json
 	@rm -rf ./config/redactor/redactor-default/.git
 	@rm -rf ./config/redactor/redactor-default/.gitignore
@@ -45,13 +45,13 @@ installcraft:
 template: codebase
 	@echo "Downloading boilerplate..."
 	@rm -rf templates
-	@git clone git@github.com:anuarhdz/craftcms-template.git ./templates
+	@git clone https://github.com/anuarhdz/craftcms-template.git ./templates
 	@rm -rf templates/.git
 	@echo "Boilerplate ready!"
 
 codebase:
 	@echo "Downloading code base..."
-	@git clone git@github.com:anuarhdz/codebase.git ./src
+	@git clone https://github.com/anuarhdz/codebase.git ./src
 	@rm -rf src/.git
 	@echo "Codebase ready!"
 
@@ -62,7 +62,7 @@ webpack-ssl: webpackfile-ssl getnpmfiles
 
 webpackfile-ssl: 
 	@echo "Setup webpack with support to vhost with SSL"
-	@git clone git@gist.github.com:111e54dc247ec205c081e7f724dc0187.git ./webpack
+	@git clone https://gist.github.com/111e54dc247ec205c081e7f724dc0187.git ./webpack
 	@mv -f webpack/webpack.mix.js .
 	@rm  -rf webpack
 	@echo "Webpack SSL Done!"
@@ -74,19 +74,19 @@ webpack: webpackfile-nossl getnpmfiles
 
 webpackfile-nossl:
 	@echo "Setup webpack..."
-	@git clone git@gist.github.com:eabb0977bdb4fb6c6ba0bf8a67496d69.git ./webpack
+	@git clone https://gist.github.com/eabb0977bdb4fb6c6ba0bf8a67496d69.git ./webpack
 	@mv -f webpack/webpack.mix.js .
 	@rm  -rf webpack
 	@echo "Webpack Done!"
 
 getnpmfiles: 
 	@echo "Babel setup..."
-	@git clone git@gist.github.com:081e7045cab50624991c26c3e4e36542.git ./babel
+	@git clone https://gist.github.com/081e7045cab50624991c26c3e4e36542.git ./babel
 	@mv -n babel/.babelrc .
 	@rm  -rf babel
 	@echo "Babel done!"
 	@echo "Package setup..."
-	@git clone git@gist.github.com:f640d923926556d740d94ad138d83345.git ./npm
+	@git clone https://gist.github.com/f640d923926556d740d94ad138d83345.git ./npm
 	@mv -n npm/package.json .
 	@rm  -rf npm
 	@echo "Package done!"
@@ -115,19 +115,19 @@ webpack-mix: getMix getPackageFiles
 
 getMix:
 	@echo "Setup webpack..."
-	@git clone git@gist.github.com:975daa4cc5ff4fcaec8420200308f954.git ./webpack
+	@git clone https://gist.github.com/975daa4cc5ff4fcaec8420200308f954.git ./webpack
 	@mv -f webpack/webpack.mix.js .
 	@rm  -rf webpack
 	@echo "Webpack Done!"
 
 getPackageFiles:
 	@echo "Babel setup..."
-	@git clone git@gist.github.com:081e7045cab50624991c26c3e4e36542.git ./babel
+	@git clone https://gist.github.com/081e7045cab50624991c26c3e4e36542.git ./babel
 	@mv -n babel/.babelrc .
 	@rm  -rf babel
 	@echo "Babel done!"
 	@echo "Package setup..."
-	@git clone git@gist.github.com:44e7f92990bab8cc0dd4d02e6c5e2109.git ./npm
+	@git clone https://gist.github.com/44e7f92990bab8cc0dd4d02e6c5e2109.git ./npm
 	@mv -n npm/package.json .
 	@rm  -rf npm
 	@echo "Package done!"
